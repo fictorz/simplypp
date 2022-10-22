@@ -1,0 +1,7 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/fictor/dev/clean/simplyV3'
+ 
+make: Leaving directory '/home/fictor/dev/clean/simplyV3'
+ 
+make: *** No rule to make target 'help'.
+

@@ -1,0 +1,1 @@
+{"buildTargets":["PHONY","build","clean","docker-delete","docker-enter","docker-push","docker-rebuild","format","make","start","test"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
