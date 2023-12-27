@@ -11,6 +11,7 @@ export PROJECT_ABSOLUTE_PATH=${CURDIR}
 export CONTAINER_PROJECT_PATH=/$(APP_NAME)
 export CONTAINER_APP_PATH=$(CONTAINER_PROJECT_PATH)/$(APP_PATH)
 export CONTAINER_BUILD_PATH=$(CONTAINER_PROJECT_PATH)/build
+export WORKDIR="."
 
 #--------------------------------------------------------------------------------
 # General scripts
