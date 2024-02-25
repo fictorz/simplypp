@@ -38,8 +38,6 @@ protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS proto/example.proto)
 
 SET(APPLICATION_SOURCE_FILES 
     util/logging.cc
-    shapes/circle.cc
-    shapes/square.cc
     proto/message_handler.cc
 )
 
