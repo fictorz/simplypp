@@ -37,7 +37,7 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 set(TEST_APPLICATION_SRC 
-    "shapes/test_shapes.cc"
+    "proto/test_message_handler.cc"
 )
 
 add_executable(basic_test_application "main.cc" ${TEST_APPLICATION_SRC})
