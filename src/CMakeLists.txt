@@ -37,8 +37,11 @@ protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS proto/example.proto)
 ## PROTO SECTION END ## 
 
 SET(APPLICATION_SOURCE_FILES 
-    util/logging.cc
+    algorithm/AlgorithmInterface.cc
+    asdk/generic/ErrorCodes.cc
+    communication/CommunicationInterface.cc
     proto/message_handler.cc
+    util/logging.cc
 )
 
 SET(APPLICATION_INCLUDE_DIRS
