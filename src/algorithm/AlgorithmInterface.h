@@ -27,7 +27,7 @@ namespace algorithm {
 
 using asdk::generic::AWLEStatus;
 
-class AlgorithmInterface  {
+class AlgorithmInterface {
 public:
     explicit AlgorithmInterface();
     virtual ~AlgorithmInterface() = default;

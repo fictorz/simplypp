@@ -13,20 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <gtest/gtest.h>
 
-#include "AlgorithmManager.h"
+#include <memory>
+#include <list>
+#include "../../src/algorithm/AlgorithmManager.h"
+#include "../../src/algorithm/AlgorithmInterface.h"
 
-namespace algorithm {
-  
-AlgorithmManager::AlgorithmManager() {
-    algos = std::make_shared<AlgorithmMap>;
-}
+using namespace std;
+using namespace algorithm;
+using namespace asdk::generic;
 
-void AlgorithmManager::dispatch(std::string topic, std::string payload, AWLEStatus &status) {}
+class FakeAlgorithm: public AlgorithmInterface {
+public:
+    explicit FakeAlgorithm() {}
+    ~FakeAlgorithm() = default;
 
-void AlgorithmManager::addAlgorithm(const std::string& topic, std::shared_ptr<AlgorithmInterface> algorithm) {
-    algos->emplace(topic, std::list<std::shared_ptr<AlgorithmInterface>>{});
-    algos->at(topic).push_back(algorithm);
+    void prepare(AWLEStatus &status) override {};
+    void execute(AWLEStatus &status) override {};
+    void complete(AWLEStatus &status) override {};
 };
 
-} // namespace
+TEST(AlgorithmManager, Instanciate) {  
+  algorithm::AlgorithmManager manager();
+}

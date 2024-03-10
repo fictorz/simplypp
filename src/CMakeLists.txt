@@ -38,6 +38,7 @@ protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS proto/example.proto)
 
 SET(APPLICATION_SOURCE_FILES 
     algorithm/AlgorithmInterface.cc
+    algorithm/AlgorithmManager.cc
     asdk/generic/ErrorCodes.cc
     communication/CommunicationInterface.cc
     proto/message_handler.cc

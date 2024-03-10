@@ -17,15 +17,17 @@
 #ifndef _SILKROAD_ALGORITHM_ALGORITHMMANAGER_H_
 #define _SILKROAD_ALGORITHM_ALGORITHMMANAGER_H_
 
-#include <functional>
 #include <memory>
 #include <string>
+#include <list>
 
 #include "../asdk/generic/ErrorCodes.h"
-
+#include "./AlgorithmInterface.h"
 namespace algorithm {
 
 using asdk::generic::AWLEStatus;
+
+using AlgorithmMap = std::map<std::string, std::list<std::shared_ptr<AlgorithmInterface>>>;
 
 class AlgorithmManager  {
 public:
@@ -33,6 +35,10 @@ public:
     virtual ~AlgorithmManager() = default;
 
     void dispatch(std::string topic, std::string payload, AWLEStatus &status);
+    void addAlgorithm(const std::string& topic, std::shared_ptr<AlgorithmInterface> algorithm);
+
+private: 
+    std::shared_ptr<AlgorithmMap> algos;
 };
 
 } // namespace algorithm
