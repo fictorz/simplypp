@@ -37,6 +37,7 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 set(TEST_APPLICATION_SRC 
+    "lib/template/test_example_class.cc"
     "shapes/test_shapes.cc"
     "proto/test_message_handler.cc"
 )

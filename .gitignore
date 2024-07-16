@@ -1,3 +1,6 @@
 .setup-dev-base-image
+.gather-simple-template
 build
 ccache.conf
+
+lib/**

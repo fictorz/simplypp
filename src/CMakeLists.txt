@@ -54,6 +54,10 @@ add_library(application_lib SHARED ${APPLICATION_SOURCE_FILES} ${PROTO_SRCS} ${P
 target_include_directories(application_lib PUBLIC ${APPLICATION_INCLUDE_DIRS})
 target_link_libraries(application_lib glog::glog ${PROTOBUF_LIBRARIES})
 
+
+target_include_directories(application_lib PUBLIC "${PROJECT_SOURCE_DIR}/../lib/simple_template")
+target_link_libraries(application_lib example_module)
+
 # Compile Application
 add_executable(application "main.cc")
 target_link_libraries(application application_lib)

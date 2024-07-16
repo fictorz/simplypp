@@ -4,6 +4,7 @@ project(main)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_subdirectory(lib/simple_template)
 add_subdirectory(src)
 
 # Adding the tests:

@@ -16,8 +16,12 @@ export WORKDIR="."
 #--------------------------------------------------------------------------------
 # General scripts
 #--------------------------------------------------------------------------------
+.gather-simple-template: .setup-dev-base-image
+	@git clone https://github.com/fictorz/simple_template.git lib/simple_template
+	@touch .gather-simple-template
+
 .PHONY: build
-build: .setup-dev-base-image
+build: .gather-simple-template
 	@./docker.sh "mkdir -p build && cd build && pwd && cmake -G Ninja .. && ninja"
 
 .PHONY: start
@@ -39,6 +43,7 @@ format: build
 .PHONY: clean
 clean: .setup-dev-base-image
 	@./docker.sh "rm -rf build"
+	@rm -f .gather_simple_template
 
 #--------------------------------------------------------------------------------
 # Docker management scripts
