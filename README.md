@@ -18,7 +18,7 @@ Type `make test` and enjoy! Every requirements will be acquired based on need.
 ## Include
 * C++ type erasure example
 * Basic dependency management example for C++ (Via the power of Make)
-* Unit test with GTEST and glog for logging
+* Unit test with GTEST 
 
 ## Versions
 CMake 3.21.2 <br />

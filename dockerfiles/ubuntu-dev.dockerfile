@@ -27,25 +27,50 @@ WORKDIR /build
 
 RUN apt-get update
 
-# every other dependencies that comes from ubuntu directly
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    build-essential \
+# Add generic tools and global libraries
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
     software-properties-common \
-    apt-utils \
     wget \
-    make \
-    libssl-dev \
-    ninja-build \
+    gnupg \
     ccache \
-    g++-10 \
     gdb \
+    libssl-dev \
     libgtest-dev \
-    cmake \
-    clang-format \
     protobuf-compiler \
     libprotobuf-dev
 
-# Logger library
-RUN apt-get install -y --no-install-recommends git; mkdir -p lib; cd lib; \
-    git clone https://github.com/google/glog.git; cd glog; git checkout v0.5.0;\
-    mkdir -p build; cd build; cmake ..; make; make install; cd ../..; rm -rf glog
+# Add LLVM (Clang 19) repository
+RUN wget https://apt.llvm.org/llvm.sh && \
+    chmod +x llvm.sh && \
+    ./llvm.sh 19 && \
+    rm llvm.sh
+
+# Add Kitware (CMake) repository
+RUN wget -qO- https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - && \
+    apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+
+# Add Clang19
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    clang-19 \
+    clang-tools-19 \
+    libc++-19-dev \
+    libc++abi-19-dev \
+    lld
+
+RUN update-alternatives --install /usr/bin/cc cc /usr/bin/clang-19 100 && \
+    update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-19 100
+
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.28.3/cmake-3.28.3-linux-x86_64.sh && \
+    chmod +x cmake-3.28.3-linux-x86_64.sh && \
+    ./cmake-3.28.3-linux-x86_64.sh --prefix=/usr/local --skip-license && \
+    rm cmake-3.28.3-linux-x86_64.sh
+
+RUN apt-get update && apt-get install -y unzip && \
+    wget https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-linux.zip && \
+    unzip ninja-linux.zip && \
+    mv ninja /usr/local/bin/ninja && \
+    chmod +x /usr/local/bin/ninja && \
+    cp /usr/local/bin/ninja /usr/bin/ninja && \
+    ninja --version

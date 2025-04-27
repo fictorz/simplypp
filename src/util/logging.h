@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include <glog/logging.h>
 #include <string>
 
 namespace util {
+
 class Logging {
 public:
   static void init(char *argv[]);

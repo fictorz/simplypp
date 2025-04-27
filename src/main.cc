@@ -1,3 +1,5 @@
+import math;
+
 #include <iostream>
 #include <memory>
 
@@ -13,8 +15,6 @@ using namespace type_erasure;
 // drawer.drawAllShapes(shapes);
 
 int main() {
-  LOG(INFO) << "Drawing many circles and squares.";
-
   VideoInterface video_interface(OpenGLInterface{4.3});
   VideoInterface video_interface2(VulcanInterface{4.3});
   using Shapes = std::vector<Shape>;
@@ -28,4 +28,7 @@ int main() {
   // Drawing all shapes
   drawAllShapes(video_interface, shapes);
   drawAllShapes(video_interface2, shapes);
+
+  std::cout << "Add: " << add(3, 4) << std::endl;
+  std::cout << "Sub: " << sub(10, 6) << std::endl;
 }

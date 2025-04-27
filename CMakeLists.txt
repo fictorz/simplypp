@@ -1,8 +1,14 @@
-cmake_minimum_required(VERSION 3.16)
+
+cmake_minimum_required(VERSION 3.28)
+
 project(main)
+project(MyModulesTest LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPERIMENTAL_CXX_MODULES ON)
+
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=lld")
 
 add_subdirectory(src)
 

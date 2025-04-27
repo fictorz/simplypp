@@ -55,7 +55,7 @@ docker-push: .setup-dev-base-image
 docker-enter:
 	@docker run --rm -it \
 	--mount type=bind,source="$(PROJECT_ABSOLUTE_PATH)",target="$(CONTAINER_PROJECT_PATH)" \
-	 ${DOCKER_REGISTRY}/$(DEV_BASE_IMAGE_TAG) /bin/bash
+	 ${DOCKER_REGISTRY}/$(DEV_BASE_IMAGE_TAG) bash
 
 .PHONY: docker-delete
 docker-delete:

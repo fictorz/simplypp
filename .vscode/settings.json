@@ -1,5 +1,5 @@
 {
-    "makefile.extensionOutputFolder": "./.vscode",
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
     "files.associations": {
         "array": "cpp",
         "bit": "cpp",
