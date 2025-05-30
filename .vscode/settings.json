@@ -1,5 +1,12 @@
 {
-    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    // Use the Microsoft engine (Default or Tag Parser)
+    "C_Cpp.intelliSenseEngine": "Default", // or "Tag Parser"
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "C_Cpp.default.intelliSenseMode": "windows-clang-x64",
+    "C_Cpp.default.compilerPath": "C:/Program Files/LLVM/bin/clang++.exe",
+    "C_Cpp.default.cppStandard": "c++20",
+    // (Optional) still point at your compile_commands.json if you like:
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/compile_commands.json",
     "files.associations": {
         "array": "cpp",
         "bit": "cpp",

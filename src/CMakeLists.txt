@@ -11,7 +11,7 @@ set(CMAKE_EXPERIMENTAL_CXX_MODULES ON)
 ## PROTO SECTION ##
 find_package(Protobuf REQUIRED)
 
-include_directories(${PROTOBUF_INCLUDE_DIRS})
+# include_directories(${PROTOBUF_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS proto/example.proto)
@@ -23,25 +23,28 @@ SET(APPLICATION_SOURCE_FILES
     proto/message_handler.cc
 )
 
-set(MODULE_SOURCES
+set(MODULE_IFACE 
     modules/math.ixx
+    modules/numeric.ixx
 )
+
+set(MODULE_IMPL modules/numeric_impl.cpp)
 
 set(APPLICATION_INCLUDE_DIRS
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_library(application_lib SHARED ${APPLICATION_SOURCE_FILES} ${PROTO_SRCS} ${PROTO_HDRS} ${MODULE_SOURCES})
+add_library(application_lib SHARED ${APPLICATION_SOURCE_FILES} ${PROTO_SRCS} ${PROTO_HDRS} ${MODULE_IMPL} ${MODULE_IFACE})
 
 target_sources(application_lib
     PUBLIC FILE_SET my_modules TYPE CXX_MODULES
         BASE_DIRS modules
         FILES
-            ${MODULE_SOURCES}
+            ${MODULE_IFACE}
 )
 
 target_compile_features(application_lib PUBLIC cxx_std_20)
-target_include_directories(application_lib PUBLIC ${APPLICATION_INCLUDE_DIRS})
+target_include_directories(application_lib PUBLIC ${APPLICATION_INCLUDE_DIRS} ${PROTOBUF_INCLUDE_DIRS})
 target_link_libraries(application_lib ${PROTOBUF_LIBRARIES})
 
 add_executable(application "main.cc")

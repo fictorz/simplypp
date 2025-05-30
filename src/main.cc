@@ -1,4 +1,5 @@
 import math;
+import numeric;
 
 #include <iostream>
 #include <memory>
@@ -31,4 +32,21 @@ int main() {
 
   std::cout << "Add: " << add(3, 4) << std::endl;
   std::cout << "Sub: " << sub(10, 6) << std::endl;
+
+  print("test");
+
+  //   // Using the concept-constrained template
+  // Pair<double> pd{3.5, 2.0};
+  // std::cout 
+  //   << "sum:  " << pd.sum()  << "\n"
+  //   << "diff: " << pd.diff() << "\n"
+  //   << "prod: " << pd.prod() << "\n"
+  //   << "quot: " << pd.quot() << "\n\n";
+
+  // // Using the alias:
+  // IntPair pi{10, 3};
+  // std::cout 
+  //   << "IntPair sum:  "  << pi.sum()  << "\n"
+  //   << "IntPair diff: "  << pi.diff() << "\n";
+
 }

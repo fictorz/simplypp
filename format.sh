@@ -12,6 +12,11 @@ export CONTAINER_APP_PATH=$CONTAINER_PROJECT_PATH/$APP_PATH
 export CONTAINER_BUILD_PATH=$CONTAINER_PROJECT_PATH/build
 export APP_NAME_BUILDER=$APP_NAME-builder
 
+export CC=/usr/bin/clang-19
+export CXX=/usr/bin/clang++-19
+
+# cmake -G Ninja ..
+
 command=$(echo "$@" | tr -d '"')
 
 # echo "$command"

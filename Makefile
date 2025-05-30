@@ -18,7 +18,7 @@ export WORKDIR="."
 #--------------------------------------------------------------------------------
 .PHONY: build
 build: .setup-dev-base-image
-	@./docker.sh "mkdir -p build && cd build && pwd && cmake -G Ninja .. && ninja"
+	@./docker.sh "mkdir -p build && cd build && pwd && cmake -G Ninja -DCMAKE_C_COMPILER=/usr/bin/clang-19 -DCMAKE_CXX_COMPILER=/usr/bin/clang++-19 -DCMAKE_BUILD_TYPE=Release .. && ninja"
 
 .PHONY: start
 start: build

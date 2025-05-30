@@ -1,4 +1,4 @@
-import math;  // Import your module normally!
+import math;
 
 #include <gtest/gtest.h>
 

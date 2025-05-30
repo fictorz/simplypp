@@ -7,7 +7,7 @@
 #
 # *** Replace TAG in .env DEV_BASE_IMAGE_TAG: apps.base.dev:TAG the hash number of the commit of the change.
 
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 ### Required OpenShift Labels
 LABEL   name="Simple App development Base Image" \
@@ -17,7 +17,6 @@ LABEL   name="Simple App development Base Image" \
     release=1.0.0 \
     summary="Base Image of for simple app development" \
     description="The base image required to build simple application."
-
 
 ENV SCRIPT_LOC="."
 
@@ -40,6 +39,10 @@ RUN apt-get update && \
     protobuf-compiler \
     libprotobuf-dev
 
+RUN apt-get purge -y g++-11 g++ gcc libstdc++-11-dev
+RUN apt-get autoremove -y
+
+
 # Add LLVM (Clang 19) repository
 RUN wget https://apt.llvm.org/llvm.sh && \
     chmod +x llvm.sh && \
@@ -61,6 +64,15 @@ RUN apt-get update && \
 
 RUN update-alternatives --install /usr/bin/cc cc /usr/bin/clang-19 100 && \
     update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-19 100
+
+RUN update-alternatives --install /usr/bin/clang cc /usr/bin/clang-19 100 && \
+    update-alternatives --install /usr/bin/clang++ c++ /usr/bin/clang++-19 100
+
+# After installing clang-19
+RUN ln -sf /usr/bin/clang++-19 /usr/bin/clang++
+
+ENV CC=/usr/bin/clang
+ENV CXX=/usr/bin/clang++
 
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.28.3/cmake-3.28.3-linux-x86_64.sh && \
     chmod +x cmake-3.28.3-linux-x86_64.sh && \
