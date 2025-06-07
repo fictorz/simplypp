@@ -7,8 +7,7 @@
 
 using namespace std;
 
-TEST(TestMessageHandler, basic) {
+TEST(TestJThread, basic) {
   proto::MyMessageHandler messageHandler;
-  test
   ASSERT_EQ(messageHandler.getName(), "test");
 }
