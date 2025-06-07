@@ -22,7 +22,8 @@ docker rm application_build --force --volumes "$APP_NAME_BUILDER" 2> /dev/null; 
         --env-file .env \
         --env BUILD_TYPE=${BUILD_TYPE} \
         --name "$APP_NAME_BUILDER" \
+        -v ${PROJECT_ABSOLUTE_PATH}:/${CONTAINER_APP_PATH} \
         -w "$CONTAINER_APP_PATH" \
         -it --log-driver=none -a stdin -a stdout -a stderr \
         "${DOCKER_REGISTRY}/${DEV_BASE_IMAGE_TAG}" \
-        bash -c "$command"
+        bash -c "$command" | sed "s|/${APP_NAME}/|./|g"

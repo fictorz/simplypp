@@ -18,7 +18,7 @@ export WORKDIR="."
 #--------------------------------------------------------------------------------
 .PHONY: build
 build: .setup-dev-base-image
-	@./docker.sh "mkdir -p build && cd build && pwd && cmake -G Ninja .. && ninja"
+	@./docker.sh "mkdir -p build && cd build && pwd && cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -G Ninja .. && ninja"
 
 .PHONY: start
 start: build
@@ -43,8 +43,8 @@ clean: .setup-dev-base-image
 #--------------------------------------------------------------------------------
 # Docker management scripts
 #--------------------------------------------------------------------------------
-.setup-dev-base-image: dockerfiles/ubuntu-dev.dockerfile
-	@docker build ${SCRIPT_LOC} --rm -f "${FILE_LOC}/ubuntu-dev.dockerfile" -t "${DOCKER_REGISTRY}/${DEV_BASE_IMAGE_TAG}"
+.setup-dev-base-image: dockerfiles/clang.dockerfile
+	@docker build ${SCRIPT_LOC} --rm -f "${FILE_LOC}/clang.dockerfile" -t "${DOCKER_REGISTRY}/${DEV_BASE_IMAGE_TAG}"
 	@touch .setup-dev-base-image
 
 PHONY: docker-push
@@ -55,7 +55,7 @@ docker-push: .setup-dev-base-image
 docker-enter:
 	@docker run --rm -it \
 	--mount type=bind,source="$(PROJECT_ABSOLUTE_PATH)",target="$(CONTAINER_PROJECT_PATH)" \
-	 ${DOCKER_REGISTRY}/$(DEV_BASE_IMAGE_TAG) /bin/bash
+	 ${DOCKER_REGISTRY}/$(DEV_BASE_IMAGE_TAG) bash
 
 .PHONY: docker-delete
 docker-delete:
