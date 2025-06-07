@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -euo pipefail
 source .env
 
 # Paths on your local machine
@@ -18,7 +19,6 @@ docker rm application_build --force --volumes "$APP_NAME_BUILDER" 2> /dev/null; 
     docker run --rm \
         --mount type=bind,source="$PROJECT_ABSOLUTE_PATH",target="$CONTAINER_PROJECT_PATH" \
         --env CCACHE_DIR="$CONTAINER_BUILD_PATH" \
-        --env PARALLEL_JOB=${MAKE_J} \
         --env-file .env \
         --env BUILD_TYPE=${BUILD_TYPE} \
         --name "$APP_NAME_BUILDER" \
@@ -26,4 +26,9 @@ docker rm application_build --force --volumes "$APP_NAME_BUILDER" 2> /dev/null; 
         -w "$CONTAINER_APP_PATH" \
         -it --log-driver=none -a stdin -a stdout -a stderr \
         "${DOCKER_REGISTRY}/${DEV_BASE_IMAGE_TAG}" \
-        bash -c "$command" | sed "s|/${APP_NAME}/|./|g"
+        bash -c "$command" 2>&1 | sed "s|/${APP_NAME}/|./|g"
+
+docker_exit_code=${PIPESTATUS[0]}
+set -e  # re-enable error on failure
+
+exit "$docker_exit_code"
