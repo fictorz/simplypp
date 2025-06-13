@@ -11,7 +11,7 @@
 
 namespace type_erasure {
 
-void drawAllShapes(OpenGLInterface const &opengl,
+void drawAllShapes([[maybe_unused]] OpenGLInterface const &opengl,
                    std::vector<Shape> const &shapes) //, /*...*/ );
 {
   // std::cout << "opengl Shape draw " << '\n';
@@ -20,7 +20,7 @@ void drawAllShapes(OpenGLInterface const &opengl,
   }
 }
 
-void drawAllShapes(VulcanInterface const &vulcan,
+void drawAllShapes([[maybe_unused]] VulcanInterface const &vulcan,
                    std::vector<Shape> const &shapes) //, /*...*/ );
 {
   // std::cout << "vulcan Shape draw " << '\n';
