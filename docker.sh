@@ -20,6 +20,7 @@ docker rm application_build --force --volumes "$APP_NAME_BUILDER" 2> /dev/null; 
         --mount type=bind,source="$PROJECT_ABSOLUTE_PATH",target="$CONTAINER_PROJECT_PATH" \
         --env CCACHE_DIR="$CONTAINER_BUILD_PATH" \
         --env-file .env \
+        --env APP_NAME="$APP_NAME" \
         --env BUILD_TYPE=${BUILD_TYPE} \
         --name "$APP_NAME_BUILDER" \
         -v ${PROJECT_ABSOLUTE_PATH}:/${CONTAINER_APP_PATH} \

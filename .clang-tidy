@@ -1,0 +1,4 @@
+Checks: '-*,readability-*'
+CheckOptions:
+  - key:             readability/IdentifierLength.LineLimit
+    value:           120

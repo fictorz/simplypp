@@ -43,6 +43,8 @@ SET(APPLICATION_SOURCE_FILES
     shapes/circle.cc
     shapes/square.cc
     coroutines/coroutines.cc
+    coroutines/timeout_awaitable.cc
+    coroutines/executables.cc
     proto/message_handler.cc
 )
 
