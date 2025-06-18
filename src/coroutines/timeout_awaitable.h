@@ -35,4 +35,4 @@ struct TimeoutAwaitableCoroutineTask {
     };
 };
 
-TimeoutAwaitableCoroutineTask do_with_timeout();
+TimeoutAwaitableCoroutineTask do_with_timeout(std::chrono::milliseconds timeout);

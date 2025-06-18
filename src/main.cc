@@ -37,8 +37,7 @@ int main() {
     my_coroutine_await();
     std::cout << "Coroutine completed\n";
 
-    do_with_timeout();
-    std::this_thread::sleep_for(std::chrono::seconds(3));  // Let coroutine finish
+    do_with_timeout(std::chrono::milliseconds(20));
 
     std::atomic<bool> finishedWork = {false};
     auto executeAsync = [&finishedWork](std::vector<uint8_t> data, CancellationToken& token) {
@@ -51,13 +50,13 @@ int main() {
             }
 
             std::cout << "Data: " << i << strData << std::endl;
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            std::this_thread::sleep_for(std::chrono::milliseconds(5));
         }
         finishedWork = true;
         std::cout << "[Task] Finished work\n";
     };
 
-    do_with_executable(executeAsync, std::chrono::milliseconds(2000));
+    do_with_executable(executeAsync, std::chrono::milliseconds(20));
 
     while (!finishedWork) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));

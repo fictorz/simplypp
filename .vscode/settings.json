@@ -1,6 +1,7 @@
 {
     "makefile.extensionOutputFolder": "./.vscode",
     "files.associations": {
+        ".fantomasignore": "ignore",
         "array": "cpp",
         "bit": "cpp",
         "*.tcc": "cpp",
@@ -54,6 +55,30 @@
         "xstddef": "cpp",
         "xstring": "cpp",
         "xtr1common": "cpp",
-        "xutility": "cpp"
-    }
+        "xutility": "cpp",
+        "charconv": "cpp",
+        "chrono": "cpp",
+        "coroutine": "cpp",
+        "format": "cpp",
+        "forward_list": "cpp",
+        "iomanip": "cpp",
+        "locale": "cpp",
+        "map": "cpp",
+        "mutex": "cpp",
+        "ratio": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp",
+        "xlocbuf": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xloctime": "cpp",
+        "xtree": "cpp",
+        "functional": "cpp",
+        "list": "cpp",
+        "xhash": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled",
+    "platformBash": "${platformBash}",
+    "stm32-for-vscode.openOCDPath": false,
+    "stm32-for-vscode.armToolchainPath": false
 }
