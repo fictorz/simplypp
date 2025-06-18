@@ -1,7 +1,7 @@
 # Simply
 Goal of that project is to share a basic docker image that serves to compile latest C++ features.
 
-Comes with a basic example of type_erasure Concepts in action!
+Comes with a basic example of type_erasure using concepts in action!
 
 ## Usage
 Type `make test` and enjoy! Every required will be acquired based on need.
