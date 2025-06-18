@@ -5,12 +5,12 @@ namespace type_erasure {
 
 class OpenGLInterface {
 public:
-  explicit OpenGLInterface(double radius) {}
+  explicit OpenGLInterface([[maybe_unused]] double radius) {}
 };
 
 class VulcanInterface {
 public:
-  explicit VulcanInterface(double side) {}
+  explicit VulcanInterface([[maybe_unused]] double side) {}
 };
 
 } // namespace type_erasure

@@ -6,9 +6,11 @@ project(Simply  VERSION 1.0
 
 add_compile_options("-Wno-deprecated-declarations")
 add_compile_options("-Wno-inconsistent-missing-override")
+add_compile_options("-Wunused-parameter")
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
 
 message(STATUS "Building ${CMAKE_BUILD_TYPE}")
 IF(CMAKE_BUILD_TYPE MATCHES DEBUG)
@@ -40,6 +42,7 @@ SET(APPLICATION_SOURCE_FILES
     util/logging.cc
     shapes/circle.cc
     shapes/square.cc
+    coroutines/coroutines.cc
     proto/message_handler.cc
 )
 

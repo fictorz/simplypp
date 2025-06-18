@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 
+#include "coroutines/coroutines.h"
 #include "shapes/shape.h"
 #include "util/logging.h"
 #include "video_interfaces/video_interface.h"
@@ -28,4 +29,8 @@ int main() {
   // Drawing all shapes
   drawAllShapes(video_interface, shapes);
   drawAllShapes(video_interface2, shapes);
+
+  my_coroutine();
+  my_coroutine_await();
+  std::cout << "Coroutine completed\n";
 }

@@ -18,6 +18,7 @@ add_compile_options("-Wno-inconsistent-missing-override")
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
 
 message(STATUS "Building ${CMAKE_BUILD_TYPE}")
 IF(CMAKE_BUILD_TYPE MATCHES DEBUG)
