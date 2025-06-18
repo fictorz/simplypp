@@ -28,7 +28,6 @@ find test -iname *.h -o -iname *.cc | xargs clang-format -i
 
 echo "File format completed."
 
-
 # docker rm application_build --force --volumes "$APP_NAME_BUILDER" 2> /dev/null; \
 #     docker run --rm \
 #         --mount type=bind,source="$PROJECT_ABSOLUTE_PATH",target="$CONTAINER_PROJECT_PATH" \

@@ -30,17 +30,17 @@ RUN apt-get update
 # every other dependencies that comes from ubuntu directly
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     build-essential \
-    software-properties-common=0.99.9.8 \
+    software-properties-common \
     apt-utils \
     wget=1.20.3-1ubuntu2 \
     make=4.2.1-1.2 \
     libssl-dev \
     ninja-build=1.10.0-1build1 \
     ccache=3.7.7-1 \
-    g++-10=10.3.0-1ubuntu1~20.04 \
+    g++-10 \
     gdb=9.2-0ubuntu1~20.04.1 \
     libgtest-dev=1.10.0-2 \
-    cmake=3.16.3-1ubuntu1 \
+    cmake \
     clang-format
 
 # Logger library
