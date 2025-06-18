@@ -1,0 +1,8 @@
+BasedOnStyle: Google
+IndentWidth: 4
+ColumnLimit: 120
+AllowShortFunctionsOnASingleLine: Inline
+BreakBeforeBraces: Attach
+# BreakBeforeBraces: Allman
+DerivePointerAlignment: false
+PointerAlignment: Left
