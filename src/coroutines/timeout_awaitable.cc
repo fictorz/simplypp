@@ -30,8 +30,8 @@ void TimeoutAwaitable::await_resume() const noexcept {
 }
 
 TimeoutAwaitableCoroutineTask do_with_timeout(std::chrono::milliseconds timeout) {
-    std::cout << "Waiting 2 seconds...\n";
     CancellationToken token;
-    co_await TimeoutAwaitable{std::chrono::milliseconds(2000), &token};
+    std::cout << "Waiting " << timeout << "...\n ";
+    co_await TimeoutAwaitable{timeout, &token};
     std::cout << "Resumed after timeout\n";
 }

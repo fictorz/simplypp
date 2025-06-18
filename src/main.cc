@@ -1,4 +1,5 @@
 #include <iostream>
+#include <latch>
 #include <memory>
 
 #include "coroutines/coroutines.h"
@@ -14,7 +15,6 @@ using namespace type_erasure;
 // Next idea is to type erase the Drawer and specify which drawer we want to
 // instantiate ie: Drawer drawer = std::make_unique<OPenGL>();
 // drawer.drawAllShapes(shapes);
-
 int main() {
     LOG(INFO) << "Drawing many circles and squares.";
 
@@ -37,28 +37,29 @@ int main() {
     my_coroutine_await();
     std::cout << "Coroutine completed\n";
 
-    do_with_timeout(std::chrono::milliseconds(20));
-
+    // Create 2 threads
+    // do_with_timeout(std::chrono::milliseconds(20));
+    constexpr int num_threads = 2;
+    std::latch latches(num_threads);
     std::atomic<bool> finishedWork = {false};
-    auto executeAsync = [&finishedWork](std::vector<uint8_t> data, CancellationToken& token) {
+    auto executeAsync = [&latches](std::vector<uint8_t> data, CancellationToken& token) {
         std::string strData(data.begin(), data.end());
-        std::cout << "Data:0 " << strData << std::endl;
-        for (int i = 0; i < 12; ++i) {
+        std::cout << "Data0: " << strData << std::endl;
+        for (int i = 0; i < 5; ++i) {
             if (token.is_cancelled()) {
                 std::cout << "[Task] Cancelled early\n";
                 break;
             }
 
-            std::cout << "Data: " << i << strData << std::endl;
-            std::this_thread::sleep_for(std::chrono::milliseconds(5));
+            std::cout << "Data" << i << ": " << strData << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
         }
-        finishedWork = true;
+        latches.count_down();
         std::cout << "[Task] Finished work\n";
     };
 
-    do_with_executable(executeAsync, std::chrono::milliseconds(20));
+    do_with_executable(executeAsync, std::chrono::milliseconds(2));
+    do_with_executable(executeAsync, std::chrono::milliseconds(200));
 
-    while (!finishedWork) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
+    latches.wait();
 }

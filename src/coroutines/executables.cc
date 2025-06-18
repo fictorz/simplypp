@@ -32,8 +32,14 @@ ExecutableAwaitableCoroutineTask do_with_executable(
     std::chrono::milliseconds timeout_duration) {
     std::cout << "do_with_executable\n";
     CancellationToken token;
+    std::atomic<bool> finishedWork = {false};
 
-    std::jthread worker([&]() { executable(std::vector<uint8_t>{'d'}, token); });
+    std::jthread worker([&]() {
+        executable(std::vector<uint8_t>{'d'}, token);
+        while (!finishedWork) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(timeout_duration));
+        }
+    });
 
     co_await TimeoutAwaitable{timeout_duration, &token};
 
