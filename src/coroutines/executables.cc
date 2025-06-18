@@ -28,20 +28,13 @@ void ExecutableAwaitable::await_resume() const noexcept {
 }
 
 ExecutableAwaitableCoroutineTask do_with_executable(
-    std::function<void(std::vector<uint8_t>, CancellationToken&)> executable,
-    std::chrono::milliseconds timeout_duration) {
+    std::function<void(std::vector<uint8_t>, CancellationToken&)> executable, std::chrono::milliseconds max_duration) {
     std::cout << "do_with_executable\n";
     CancellationToken token;
-    std::atomic<bool> finishedWork = {false};
 
-    std::jthread worker([&]() {
-        executable(std::vector<uint8_t>{'d'}, token);
-        while (!finishedWork) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(timeout_duration));
-        }
-    });
+    std::jthread worker([&]() { executable(std::vector<uint8_t>{'d'}, token); });
 
-    co_await TimeoutAwaitable{timeout_duration, &token};
+    co_await TimeoutAwaitable{max_duration, &token};
 
     if (token.is_cancelled()) {
         std::cout << "Cancelled due to timeout\n";
