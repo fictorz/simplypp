@@ -1,3 +1,4 @@
 .setup-dev-base-image
 build
 ccache.conf
+.vscode/*.log
