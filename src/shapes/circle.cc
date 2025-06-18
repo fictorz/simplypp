@@ -4,7 +4,7 @@
 namespace type_erasure {
 
 Circle::Circle(double radius) : _radius{radius} {
-  std::cout << "New Circle!" << std::endl;
+  // std::cout << "New Circle!" << std::endl;
 }
 
 Circle::~Circle() {}

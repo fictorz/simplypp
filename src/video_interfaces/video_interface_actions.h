@@ -14,7 +14,7 @@ namespace type_erasure {
 void drawAllShapes(OpenGLInterface const &opengl,
                    std::vector<Shape> const &shapes) //, /*...*/ );
 {
-  std::cout << "opengl Shape draw " << '\n';
+  // std::cout << "opengl Shape draw " << '\n';
   for (auto const &shape : shapes) {
     draw(shape);
   }
@@ -23,7 +23,7 @@ void drawAllShapes(OpenGLInterface const &opengl,
 void drawAllShapes(VulcanInterface const &vulcan,
                    std::vector<Shape> const &shapes) //, /*...*/ );
 {
-  std::cout << "vulcan Shape draw " << '\n';
+  // std::cout << "vulcan Shape draw " << '\n';
   for (auto const &shape : shapes) {
     draw(shape);
   }

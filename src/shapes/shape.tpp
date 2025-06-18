@@ -14,12 +14,12 @@ namespace type_erasure {
 
     void serialize(Circle const&)
     {
-        std::cout << "erased_type Shape Circle serialize " << '\n';
+        // std::cout << "erased_type Shape Circle serialize " << '\n';
     }
 
     void draw(Circle const&)
     {
-        std::cout << "erased_type Shape Circle draw " << '\n';
+        // std::cout << "erased_type Shape Circle draw " << '\n';
     }
 
     void scale(Circle &circle, double scale_factor)
@@ -29,12 +29,12 @@ namespace type_erasure {
 
     void serialize(Square const&)
     {
-        std::cout << "erased_type Shape Square serialize " << '\n';
+        // std::cout << "erased_type Shape Square serialize " << '\n';
     }
 
     void draw(Square const&)
     {
-        std::cout << "erased_type Shape Square draw " << '\n';
+        // std::cout << "erased_type Shape Square draw " << '\n';
     }
 
     void scale(Square &square, double scale_factor)
