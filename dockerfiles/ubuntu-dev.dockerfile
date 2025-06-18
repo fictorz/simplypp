@@ -32,14 +32,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     build-essential \
     software-properties-common \
     apt-utils \
-    wget=1.20.3-1ubuntu2 \
-    make=4.2.1-1.2 \
+    wget \
+    make \
     libssl-dev \
-    ninja-build=1.10.0-1build1 \
-    ccache=3.7.7-1 \
+    ninja-build \
+    ccache \
     g++-10 \
-    gdb=9.2-0ubuntu1~20.04.1 \
-    libgtest-dev=1.10.0-2 \
+    gdb \
+    libgtest-dev \
     cmake \
     clang-format \
     protobuf-compiler \
