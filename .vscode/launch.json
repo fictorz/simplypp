@@ -1,0 +1,75 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug application",
+      "type": "cppdbg",
+      "request": "launch",
+      "MIMode": "gdb",
+      "miDebuggerServerAddress": "localhost:2222",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "useExtendedRemote": true,
+      "program": "/simplypp/build/src/application",
+      "cwd": "/simplypp/build",
+      "pipeTransport": {
+        "pipeProgram": "docker",
+        "pipeArgs": [
+          "exec",
+          "-i",
+          "simplypp_container",
+          "bash",
+          "-lc" // login shell, prevents path-mangling
+        ],
+        "pipeEnv": {
+          "MSYS_NO_PATHCONV": "1" // stop Git Bash rewriting /usr/bin
+        },
+        "pipeCwd": "${workspaceFolder}",
+        "debuggerPath": "/usr/bin/gdb"
+      },
+      "sourceFileMap": {
+        "/simplypp": "${workspaceFolder}"
+      },
+      "setupCommands": [
+        {
+          "text": "-enable-pretty-printing"
+        }
+      ],
+      "preLaunchTask": "Start container to debug solution"
+    },
+    {
+      "name": "Debug application-test",
+      "type": "cppdbg",
+      "request": "launch",
+      "MIMode": "gdb",
+      "miDebuggerServerAddress": "localhost:2222",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "useExtendedRemote": true,
+      "program": "/simplypp/build/test/basic_test_application",
+      "cwd": "/simplypp/build",
+      "pipeTransport": {
+        "pipeProgram": "docker",
+        "pipeArgs": [
+          "exec",
+          "-i",
+          "simplypp_container",
+          "bash",
+          "-lc" // login shell, prevents path-mangling
+        ],
+        "pipeEnv": {
+          "MSYS_NO_PATHCONV": "1" // stop Git Bash rewriting /usr/bin
+        },
+        "pipeCwd": "${workspaceFolder}",
+        "debuggerPath": "/usr/bin/gdb"
+      },
+      "sourceFileMap": {
+        "/simplypp": "${workspaceFolder}"
+      },
+      "setupCommands": [
+        {
+          "text": "-enable-pretty-printing"
+        }
+      ],
+      "preLaunchTask": "Start container to debug solution"
+    }
+  ]
+}

@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     libgtest-dev \
     clang-format \
     protobuf-compiler \
-    libprotobuf-dev
+    libprotobuf-dev \
+    gdbserver
 
 # Set working directory
 WORKDIR /workspace

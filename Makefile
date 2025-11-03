@@ -40,6 +40,12 @@ format: build
 clean: .setup-dev-base-image
 	@./docker.sh "rm -rf build"
 
+.PHONY: start-debug
+start-debug:
+	@docker run --rm -it -p 2222:2222 --name ${CONTAINER_NAME} \
+	--mount type=bind,source="$(PROJECT_ABSOLUTE_PATH)",target="$(CONTAINER_PROJECT_PATH)" \
+	 ${DOCKER_REGISTRY}/$(DEV_BASE_IMAGE_TAG) bash
+
 #--------------------------------------------------------------------------------
 # Docker management scripts
 #--------------------------------------------------------------------------------
